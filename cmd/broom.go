@@ -52,7 +52,7 @@ func vacuum(cmd *cobra.Command, args []string) {
 				return nil
 			}
 
-			if info.ModTime().Before(duration) {
+			if !info.IsDir() && info.ModTime().Before(duration) {
 				if dryRun {
 					fmt.Printf("Would remove %s\n", path)
 				} else {
